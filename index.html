@@ -1,13 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <title>D3 Page Template</title>
-      <script type="text/javascript" src="../d3/d3.js"></script>
-  </head>
-  <body>
-      <script type="text/javascript">
-          // Your beautiful D3 code will go here
-      </script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 2</title>
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="overflow-hidden">
+<div class="overlay">
+    <div class="overlay-item">
+        <h1 class="no-user-select">Preparing Visualisations</h1>
+        <span class="spinner"></span>
+    </div>
+</div>
+<span class="d-flex align-items-center justify-content-end mr-4 mt-2 float-right">
+    <span class="switch-label">Dark Theme</span>
+    <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider round"></span>
+    </label>
+</span>
+<div class="container">
+    <h1 class="pt-3">02806 Social Data Analysis and Visualization</h1>
+    <h2 class="mt-3">Assignment 2</h2>
+    <section class="mt-3">
+        <h3>Part 1: Telling Data Stories</h3>
+        <dl>
+            <dt><span>Q1</span> What is the Oxford English Dictionary's definition of a narrative?</dt>
+            <dd>
+                The Oxford English Dictionary's definition of narrative is: "an account of a series of events, facts
+                , etc., given in order and with the establishing of connections between them."
+                This definition can also be applied to narrative visualization. Data is presented using different
+                genres of visualization where transitions, such as consistent labels between plots or animated
+                transitions, is used to connect the story.
+            </dd>
+        </dl>
+        <dl class="mt-5">
+            <dt><span>Q2</span> What is your favorite visualization among the examples in section 3? Explain why in a few words</dt>
+            <dd>
+                The "Gapminder Human Development Trends" is the most compelling visualisation to us. It contains a lot
+                of graphical features, but they are introduced one at a time and are thus not overwhelming the reader.
+                The author also provides annotations for each section to help the reader to understand the underlying narrative.
+                Even though three different plots are used, the reader can easily identify the similar elements used
+                , since animated transitions are used to morph the chart types.
+                Furthermore two progress bars helps the reader to navigate and keep track of the story.
+                Its martini glass structure is a nice balance between an author driven and a user driven narrative
+                , that also lets the reader explore the data themselves independent from the authors narrative.
+            </dd>
+        </dl>
+        <dl class="mt-5">
+            <dt><span>Q3</span> What's the point of Figure 7?</dt>
+            <dd>
+                The point of figure 7 is to give an overview of specific design strategies used in 58 visualization.
+                The statespace is used to show:
+                <ul>
+                    <li>Genre types for narrative visualizations</li>
+                    <li>Methods of integrating visualizations with accompanying text</li>
+                    <li>Unique patterns for narrative visualization</li>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="mt-5">
+            <dt>
+                <span>Q4</span>
+                Use Figure 7 to find the most common design choice within each category for the Visual narrative and
+                Narrative structure (the categories within visual narrative
+                are 'visual structuring', 'highlighting', etc)
+            </dt>
+            <dd>
+                The most common design choices are listed with the following format: category
+                , design choice, # of occurrences.
+                <ul class="no-bullets">
+                    <li>
+                        <strong>Visual structuring:</strong> Consistent Visual Platform, 34 
+                    </li>
+                    <li>
+                        <strong>Highlighting:</strong> Feature Distinction, 46
+                    </li>
+                    <li>
+                        <strong>Transition guidance:</strong> Object Continuity, 22 
+                    </li>
+                </ul>
+                <ul class="no-bullets">
+                    <li>
+                        <strong>Ordering:</strong> User Directed Path, 30
+                    </li>
+                    <li>
+                        <strong>Interactivity:</strong> Filtering / Selection / Search 38 
+                    </li>
+                    <li>
+                        <strong>Messaging:</strong> Captions / Headlines 49
+                    </li>
+                </ul>
+                All of these elements is in general very effective when using visualization to tell a story.
+                The key word here is general as the choice of visual structuring
+                , highlighting etc. is highly depending on the story that needs to be told.
+            </dd>
+        </dl>
+        <dl class="mt-5">
+            <dt><span>Q5</span> Check out Figure 8 and section 4.3</dt>
+            <dd>
+                <dl>
+                    <dt><span>Q5.1</span> What is your favorite genre of narrative visualization? Why?</dt>
+                    <dd>
+                        It depends a lot on the complexity of the story but in general our favorite genres are Film / Video / Animation that contains audio as messaging.&nbsp;
+                        A lot of information can be obtained by both viewing something visual as well as listening to some audio.&nbsp;
+                        The narrative stories in videos are mostly author-driven with limited interactivity,&nbsp;
+                        but it is often possible to rewind / fast forward if the audience gets lost in the story.
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><span>Q5.2</span> What is your least favorite genre? Why?</dt>
+                    <dd>
+                        This does again depends on the story. It is probably the comic strip,&nbsp;
+                        as it is the most unconventional and difficult to use for more than conveying a simple point.&nbsp;
+                        Comic strips are not very efficient in professional / serious environments.&nbsp;
+                        Furthermore it's hard to create small comic strips that contain a lot of information.
+                    </dd>
+                </dl>
+            </dd>
+        </dl>
+    </section>
+</div>
+<section class="mt-5">
+    <div id="vizContainer">
+        <div class="container">
+            <h3>Part 2: Visualizing Murders over Time</h3>
+            <p>
+                This visualisation of murders over time in NYC consists of a
+                timeline that displays the number of murders per day from 2006 to 2016,
+                a map displaying their locations, and a bar chart displaying their hourly distribution.
+                The timeline, map and bar chart are each brushable to enable filtering of the murders and are all
+                cross-filtered using
+                &nbsp;<a href="https://github.com/crossfilter/crossfilter" target="_blank">crossfilter.js</a>
+                &nbsp;for the ultimate cross-filter experience. Press the play button to start a little animation
+                of the murder development through time. Alternatively look at the
+                <a href="minimum.html" target="_blank">minimum implementation</a> that doesn't rely on
+                <a href="https://github.com/crossfilter/crossfilter" target="_blank">crossfilter.js</a>
+                and also includes all days without reported murders into the timeline.
+            </p>
+            <div class="row justify-content-center mt-5">
+                <h4 class="no-user-select">Daily Murder Distribution</h4>
+                <div class="col-12 text-center" id="timeLineContainer">
+                </div>
+                <div class="col-12 text-center">
+                    <button class="play-btn" id="playButton"><div class="play" id="buttonIcon"></div></button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center" id="mapContainer">
+                    <h4 class="no-user-select">NYC Boroughs</h4>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h4 class="no-user-select">Hourly Murder Distribution</h4>
+                    <div id="barChartContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="lib/jquery-3.3.1.slim.min.js"></script>
+<script src="lib/popper.min.js"></script>
+<script src="lib/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+<script src="lib/d3/d3.min.js"></script>
+<script src="lib/crossfilter.min.js"></script>
+<script src="timeline.js"></script>
+</body>
 </html>
